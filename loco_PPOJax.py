@@ -129,8 +129,8 @@ def experiment(config: DictConfig):
 
         if not SERVER:
             # run the environment with the trained agent to record video
-            PPOJax.play_policy(env, agent_conf, agent_state, deterministic=True, n_steps=1000, n_envs=20, record=True,
-                            train_state_seed=0, render=False)
+            PPOJax.play_policy(env, agent_conf, agent_state, deterministic=True, n_steps=1000, n_envs=1, record=True,
+                            train_state_seed=0)
             video_file = env.video_file_path
             print({"Save video to": video_file})
 
