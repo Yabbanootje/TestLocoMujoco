@@ -1,3 +1,4 @@
 *.zip
+*.pkl
 outputs/
 LocoMuJoCo_Recordings/

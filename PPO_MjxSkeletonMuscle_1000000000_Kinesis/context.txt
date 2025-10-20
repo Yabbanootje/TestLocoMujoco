@@ -1,0 +1,18 @@
+For this run, I used:
+hidden_layers: [2048, 1024, 1024, 512, 512, 256]
+dataset_name:
+    - walk1_subject1
+num_envs: 2048
+num_steps: 200
+gamma: 0.99
+sites_for_mimic:
+    - upper_body_mimic
+    - pelvis_mimic
+    - left_hand_mimic
+    - left_elbow_mimic
+    - left_knee_mimic
+    - left_foot_mimic
+    - right_hand_mimic
+    - right_elbow_mimic
+    - right_knee_mimic
+    - right_foot_mimic
