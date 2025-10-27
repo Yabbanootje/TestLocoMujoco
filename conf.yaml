@@ -32,6 +32,8 @@ experiment:
     env_name: MjxSkeletonMuscle
     headless: false
     disable_arms: false
+    scaling: 1.0
+    use_box_feet: true
     horizon: 1000
     goal_type: GoalTrajMimic
     goal_params:
@@ -40,18 +42,33 @@ experiment:
     control_params: ${control_config.torque_control.control_params}
     reward_type: MimicReward
     reward_params:
-      qpos_w_sum: 0.4
-      qvel_w_sum: 0.2
-      rpos_w_sum: 0.5
-      rquat_w_sum: 0.3
-      rvel_w_sum: 0.1
+      # qpos_w_exp: 10.0   # pose sensitivity
+      # qvel_w_exp: 2.0    # velocity sensitivity
+      # rpos_w_exp: 100.0  # site position precision
+      # rquat_w_exp: 10.0  # site orientation precision
+      # rvel_w_exp: 0.1    # site velocity precision
+      qpos_w_sum: 0.4    # main pose reward
+      qvel_w_sum: 0.2    # velocity weight
+      rpos_w_sum: 0.5    # site position importance
+      rquat_w_sum: 0.3   # site orientation importance
+      rvel_w_sum: 0.1    # site velocity importance
+      action_out_of_bounds_coeff: 0.01
+      joint_acc_coeff: 0.0
+      joint_torque_coeff: 0.0
+      action_rate_coeff: 0.0
       sites_for_mimic:
         - upper_body_mimic
         - pelvis_mimic
+        # - left_shoulder_mimic
         - left_hand_mimic
+        # - left_hip_mimic
+        # - left_elbow_mimic
         - left_knee_mimic
         - left_foot_mimic
+        # - right_shoulder_mimic
         - right_hand_mimic
+        # - right_hip_mimic
+        # - right_elbow_mimic
         - right_knee_mimic
         - right_foot_mimic
     # recorder_params:
@@ -59,15 +76,15 @@ experiment:
     #     - ""
     #   tag:
     #     - ""
-  hidden_layers: [2048, 1024, 512, 512, 256]
+  hidden_layers: [512, 512]
   lr: 1e-4
-  num_envs: 2048
+  num_envs: 8
   num_steps: 200
-  total_timesteps: 1e9
+  total_timesteps: 2e5
   update_epochs: 4
   # proportion_env_reward: 0.0
   num_minibatches: 32
-  gamma: 0.99
+  gamma: 0.95
   gae_lambda: 0.95
   clip_eps: 0.2
   init_std: 0.2

@@ -1,0 +1,25 @@
+For this run, I used:
+hidden_layers: [1024, 1024, 1024, 1024, 512, 512, 512, 512]
+dataset_name:
+    - walk1_subject1
+    - walk1_subject2
+    - walk1_subject5
+num_envs: 4096
+num_steps: 50
+gamma: 0.95
+reward_params:
+      qpos_w_sum: 0.4
+      qvel_w_sum: 0.2
+      action_out_of_bounds_coeff: 0.01
+      joint_acc_coeff: 0.0
+      joint_torque_coeff: 0.0
+      action_rate_coeff: 0.0
+sites_for_mimic:
+    - upper_body_mimic
+    - pelvis_mimic
+    - left_hand_mimic
+    - left_knee_mimic
+    - left_foot_mimic
+    - right_hand_mimic
+    - right_knee_mimic
+    - right_foot_mimic

@@ -22,7 +22,7 @@ TRAIN = False
 def experiment(config: DictConfig):
     try:
         if not SERVER:
-            training_steps = 8_000_000_000
+            training_steps = 4_000_000_000
             algorithm = "PPO"
             env_id = "MjxSkeletonMuscle"
             model_name = algorithm + "_" + env_id + "_" + str(training_steps) + "_KinTwin"
@@ -114,22 +114,22 @@ def experiment(config: DictConfig):
 
             print(f"Time taken to log metrics: {time.time() - t_start}s")
 
-        # load agent
-        agent_conf, agent_state = PPOJax.load_agent(dir + "PPOJax_saved.pkl")
-        config = agent_conf.config
-        config["recorder_params"] = {"path": dir, "tag": "videos/"}
-
-        # get task factory
-        factory = TaskFactory.get_factory_cls(config.experiment.task_factory.name)
-
-        # create env
-        OmegaConf.set_struct(config, False)  # Allow modifications
-        config.experiment.env_params["headless"] = False
-        env = factory.make(**config.experiment.env_params, **config.experiment.task_factory.params)
-
         if not SERVER:
+            # load agent
+            agent_conf, agent_state = PPOJax.load_agent(dir + "PPOJax_saved.pkl")
+            config = agent_conf.config
+            config["recorder_params"] = {"path": dir, "tag": "videos/"}
+
+            # get task factory
+            factory = TaskFactory.get_factory_cls(config.experiment.task_factory.name)
+
+            # create env
+            OmegaConf.set_struct(config, False)  # Allow modifications
+            config.experiment.env_params["headless"] = False
+            env = factory.make(**config.experiment.env_params, **config.experiment.task_factory.params)
+
             # run the environment with the trained agent to record video
-            PPOJax.play_policy(env, agent_conf, agent_state, deterministic=True, n_steps=1000, n_envs=1, record=True,
+            PPOJax.play_policy(env, agent_conf, agent_state, deterministic=True, n_steps=2000, n_envs=1, record=True,
                             train_state_seed=0)
             video_file = env.video_file_path
             print({"Save video to": video_file})
