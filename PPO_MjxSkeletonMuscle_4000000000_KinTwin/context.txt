@@ -8,6 +8,11 @@ num_envs: 4096
 num_steps: 50
 gamma: 0.95
 reward_params:
+      qpos_w_exp: 10.0
+      qvel_w_exp: 2.0
+      rpos_w_exp: 100.0
+      rquat_w_exp: 10.0
+      rvel_w_exp: 0.1
       qpos_w_sum: 0.4
       qvel_w_sum: 0.2
       action_out_of_bounds_coeff: 0.01
