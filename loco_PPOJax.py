@@ -22,7 +22,7 @@ TRAIN = False
 def experiment(config: DictConfig):
     try:
         if not SERVER:
-            training_steps = 1_000_000_000
+            training_steps = 300_000_000
             algorithm = "PPO"
             env_id = "MjxSkeletonMuscle"
             model_name = algorithm + "_" + env_id + "_" + str(training_steps) + "_Kinesis"
