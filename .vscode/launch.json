@@ -1,0 +1,17 @@
+{
+	"configurations": [
+		{
+			"type": "node-terminal",
+			"name": "JavaScript Debug Terminal",
+			"request": "launch",
+			"cwd": "${workspaceFolder}"
+		},
+		{
+			"name": "Python Debugger: Python File",
+			"type": "debugpy",
+			"request": "launch",
+			"program": "${file}",
+			"justMyCode": false
+		}
+	]
+}

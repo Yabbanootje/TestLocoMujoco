@@ -22,10 +22,10 @@ TRAIN = False
 def experiment(config: DictConfig):
     try:
         if not SERVER:
-            training_steps = 300_000_000
+            training_steps = 400_000_000
             algorithm = "PPO"
             env_id = "MjxSkeletonMuscle"
-            model_name = algorithm + "_" + env_id + "_" + str(training_steps) + "_Kinesis"
+            model_name = algorithm + "_" + env_id + "_" + str(training_steps) + "_Lattice"
             dir = f"./{model_name}/"
             if not os.path.exists(model_name):
                 os.makedirs(model_name)
@@ -129,7 +129,7 @@ def experiment(config: DictConfig):
             env = factory.make(**config.experiment.env_params, **config.experiment.task_factory.params)
 
             # run the environment with the trained agent to record video
-            PPOJax.play_policy(env, agent_conf, agent_state, deterministic=True, n_steps=2000, n_envs=1, record=True,
+            PPOJax.play_policy(env, agent_conf, agent_state, deterministic=True, n_steps=2000, n_envs=2, record=True,
                             train_state_seed=0)
             video_file = env.video_file_path
             print({"Save video to": video_file})

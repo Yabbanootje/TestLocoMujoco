@@ -49,7 +49,7 @@ jaxtyping==0.3.2
 Jinja2==3.1.6
 kiwisolver==1.4.9
 lineax==0.0.8
-loco-mujoco @ git+https://github.com/robfiras/loco-mujoco.git@131c1e7bfb4c3d20ffc82c0368886fe708a5964b
+loco-mujoco @ git+https://github.com/Yabbanootje/loco-mujoco.git@test
 Markdown==3.9
 markdown-it-py==4.0.0
 MarkupSafe==3.0.3

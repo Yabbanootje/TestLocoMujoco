@@ -23,11 +23,26 @@ experiment:
   task_factory:
     name: ImitationFactory
     params:
-      lafan1_dataset_conf:
-        dataset_name:
-          - walk1_subject1
-          - walk1_subject2
-          - walk1_subject5
+      # lafan1_dataset_conf:
+      #   dataset_name:
+      #     - walk1_subject1
+      #     - walk1_subject2
+      #     - walk1_subject5
+      default_dataset_conf:
+        task:
+          - walk
+          # - walkturn
+          # - onestepleft
+          # - onestepright
+          # - onesteplong
+          # - onestepside1
+          # - onestepside2
+          # - stepinplace1
+          # - stepinplace2
+          # - stepinplace3
+          # - highjump
+          # - random_walk
+          # - squat
   env_params:
     env_name: MjxSkeletonMuscle
     headless: false
@@ -38,27 +53,29 @@ experiment:
     goal_type: GoalTrajMimic
     goal_params:
       visualize_goal: true
+      n_step_lookahead: 5
     control_type: ${control_config.torque_control.control_type}
     control_params: ${control_config.torque_control.control_params}
     reward_type: MimicReward
     reward_params:
-      # qpos_w_exp: 10.0   # pose sensitivity
-      # qvel_w_exp: 2.0    # velocity sensitivity
-      # rpos_w_exp: 100.0  # site position precision
-      # rquat_w_exp: 10.0  # site orientation precision
-      # rvel_w_exp: 0.1    # site velocity precision
-      qpos_w_sum: 0.4    # main pose reward
+      qpos_w_exp: 15.0   # pose sensitivity
+      qvel_w_exp: 3.0    # velocity sensitivity
+      rpos_w_exp: 100.0  # site position precision
+      rquat_w_exp: 10.0  # site orientation precision
+      rvel_w_exp: 0.1    # site velocity precision
+      qpos_w_sum: 0.6    # main pose reward
       qvel_w_sum: 0.2    # velocity weight
-      rpos_w_sum: 0.5    # site position importance
-      rquat_w_sum: 0.3   # site orientation importance
-      rvel_w_sum: 0.1    # site velocity importance
-      action_out_of_bounds_coeff: 0.01
-      joint_acc_coeff: 0.0
-      joint_torque_coeff: 0.0
-      action_rate_coeff: 0.0
+      # rpos_w_sum: 0.5    # site position importance
+      # rquat_w_sum: 0.3   # site orientation importance
+      # rvel_w_sum: 0.1    # site velocity importance
+      action_out_of_bounds_coeff: 0.0
+      # joint_acc_coeff: 0.05
+      # joint_torque_coeff: 0.05
+      action_rate_coeff: 0.02
+      action_size_coeff: 0.02
       sites_for_mimic:
-        - upper_body_mimic
         - pelvis_mimic
+        - upper_body_mimic
         # - left_shoulder_mimic
         - left_hand_mimic
         # - left_hip_mimic
@@ -80,7 +97,7 @@ experiment:
   lr: 1e-4
   num_envs: 8
   num_steps: 200
-  total_timesteps: 2e5
+  total_timesteps: 2e4
   update_epochs: 4
   # proportion_env_reward: 0.0
   num_minibatches: 32
@@ -89,16 +106,18 @@ experiment:
   clip_eps: 0.2
   init_std: 0.2
   learnable_std: false
+  use_lattice: true
   ent_coef: 0.0
   vf_coef: 0.5
   max_grad_norm: 0.5
-  activation: tanh
+  activation: silu
   anneal_lr: false
   weight_decay: 0.0
   normalize_env: true
   debug: false
   n_seeds: 1  # will automatically take seeds from 1 to n_seeds
   vmap_across_seeds: true
+  # validation_interval: 64 # does nothing, it is instead based on validation.num
   validation:
     active: true
     num_steps: 100
