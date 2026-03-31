@@ -1,0 +1,38 @@
+For this run, I used:
+hidden_layers: [1024, 1024, 1024, 1024, 512, 512, 512, 512]
+task:
+    - walk
+num_envs: 1024
+num_steps: 50
+num_minibatches: 64
+gamma: 0.95
+activation: silu
+reward_params:
+      qpos_w_exp: 15.0
+      qvel_w_exp: 3.0
+      rpos_w_exp: 100.0
+      rquat_w_exp: 10.0
+      rvel_w_exp: 0.1
+      qpos_w_sum: 0.6
+      qvel_w_sum: 0.2
+      action_out_of_bounds_coeff: 0.0
+      joint_acc_coeff: 0.0
+      joint_torque_coeff: 0.0
+      action_rate_coeff: 0.02
+sites_for_mimic:
+    - pelvis_mimic
+    - upper_body_mimic
+    - left_hand_mimic
+    - left_knee_mimic
+    - left_foot_mimic
+    - right_hand_mimic
+    - right_knee_mimic
+    - right_foot_mimic
+I changed the output activation to be tanh
+I removed the limitation that penalties must be at least -1
+I changed the MimicReward to also penalize large actions with the same coefficient as the action_rate
+I added Lattice to the exploration process
+I added the last activations to the observations
+I added several future states to the observations, namely
+- The future site positions, velocities and angles
+- The future positions

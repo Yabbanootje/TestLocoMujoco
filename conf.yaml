@@ -2,22 +2,32 @@ defaults:
   - override hydra/job_logging: default
   - override hydra/launcher: basic
 
-#hydra:
+# hydra:
 #  mode: MULTIRUN
 #  job_logging: {}
 #  hydra_logging: {}
 #  sweeper:
 #    params:
-#      experiment.learnable_std: true, false
-#      experiment.init_std: 0.1, 0.2
-#      experiment.num_steps: 10, 20
-#      experiment.update_epochs: 4
-#      experiment.clip_eps: 0.2, 0.05
-#      # env_params
-#      experiment.env_params.env_name: MjxUnitreeH1.walk, MjxUnitreeH1.run
+    #  experiment.learnable_std: true, false
+    #  experiment.init_std: 0.1, 0.2
+    #  experiment.num_steps: 10, 20
+    #  experiment.update_epochs: 4
+    #  experiment.clip_eps: 0.2, 0.05
+    #  # env_params
+    #  experiment.env_params.env_name: MjxUnitreeH1.walk, MjxUnitreeH1.run
+      # experiment.env_params.reward_params.qpos_w_exp: 2.0, 20.0
+      # experiment.env_params.reward_params.qvel_w_exp: 0.1, 1.0
+      # experiment.env_params.reward_params.rpos_w_exp: 40.0, 400.0
+      # experiment.env_params.reward_params.com_w_exp: 1.0, 5.0
+      # experiment.env_params.horizon: 600, 2000
+    # experiment.hidden_layers: "[1024, 1024, 512, 512, 512, 256, 256, 256], [2048, 1536, 1024, 1024, 512, 512]"
+    # experiment.use_lattice: false, true
+
+
+
 
 wandb:
-  project: "deepmimic"
+  project: "baseline_test"
 
 experiment:
   task_factory:
@@ -49,25 +59,28 @@ experiment:
     disable_arms: false
     scaling: 1.0
     use_box_feet: true
-    horizon: 1000
+    horizon: 300
     goal_type: GoalTrajMimic
     goal_params:
       visualize_goal: true
-      n_step_lookahead: 5
+      n_step_lookahead: 1
+      full_obs_lookahead: false
     control_type: ${control_config.torque_control.control_type}
     control_params: ${control_config.torque_control.control_params}
     reward_type: MimicReward
     reward_params:
-      qpos_w_exp: 15.0   # pose sensitivity
-      qvel_w_exp: 3.0    # velocity sensitivity
-      rpos_w_exp: 100.0  # site position precision
-      rquat_w_exp: 10.0  # site orientation precision
-      rvel_w_exp: 0.1    # site velocity precision
+      qpos_w_exp: 10.0   # pose sensitivity
+      qvel_w_exp: 0.5    # velocity sensitivity
+      com_w_exp: 5.0  # site position precision
+      rpos_w_exp: 200.0  # site position precision
+      # rquat_w_exp: 0.1  # site orientation precision
+      # rvel_w_exp: 0.1    # site velocity precision
       qpos_w_sum: 0.6    # main pose reward
-      qvel_w_sum: 0.2    # velocity weight
-      # rpos_w_sum: 0.5    # site position importance
-      # rquat_w_sum: 0.3   # site orientation importance
-      # rvel_w_sum: 0.1    # site velocity importance
+      qvel_w_sum: 0.1    # velocity weight
+      com_w_sum: 0.1    # absolute com distance
+      rpos_w_sum: 0.2    # site position importance
+      rquat_w_sum: 0.0   # site orientation importance
+      rvel_w_sum: 0.0    # site velocity importance
       action_out_of_bounds_coeff: 0.0
       # joint_acc_coeff: 0.05
       # joint_torque_coeff: 0.05
@@ -76,24 +89,27 @@ experiment:
       sites_for_mimic:
         - pelvis_mimic
         - upper_body_mimic
-        # - left_shoulder_mimic
+        - left_shoulder_mimic
         - left_hand_mimic
-        # - left_hip_mimic
-        # - left_elbow_mimic
+        - left_hip_mimic
+        - left_elbow_mimic
         - left_knee_mimic
         - left_foot_mimic
-        # - right_shoulder_mimic
+        - right_shoulder_mimic
         - right_hand_mimic
-        # - right_hip_mimic
-        # - right_elbow_mimic
+        - right_hip_mimic
+        - right_elbow_mimic
         - right_knee_mimic
         - right_foot_mimic
+    th_params:
+      random_start: true
+      # fixed_start_conf: [0,0]
     # recorder_params:
     #   path:
     #     - ""
     #   tag:
     #     - ""
-  hidden_layers: [512, 512]
+  hidden_layers: [1024, 1024, 1024, 1024, 512, 512, 512, 512]
   lr: 1e-4
   num_envs: 8
   num_steps: 200
@@ -107,7 +123,7 @@ experiment:
   init_std: 0.2
   learnable_std: false
   use_lattice: true
-  ent_coef: 0.0
+  ent_coef: 1e-3
   vf_coef: 0.5
   max_grad_norm: 0.5
   activation: silu
@@ -120,8 +136,8 @@ experiment:
   # validation_interval: 64 # does nothing, it is instead based on validation.num
   validation:
     active: true
-    num_steps: 100
-    num_envs: 100
+    num_steps: 600
+    num_envs: 30
     num: 1 # set to 0 to disable validation
     # if none of the following is set, only the mean reward and episode length is logged
     quantities: # quantities to be used for the distance measures below

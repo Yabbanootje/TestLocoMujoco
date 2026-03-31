@@ -1,0 +1,433 @@
+Experiment Configuration: {'wandb': {'project': 'deepmimic'}, 'experiment': {'task_factory': {'name': 'ImitationFactory', 'params': {'default_dataset_conf': {'task': ['walk']}}}, 'env_params': {'env_name': 'MjxSkeletonMuscle', 'headless': False, 'disable_arms': False, 'scaling': 1.0, 'use_box_feet': True, 'horizon': 1000, 'goal_type': 'GoalTrajMimic', 'goal_params': {'visualize_goal': True, 'n_step_lookahead': 1, 'full_obs_lookahead': False}, 'control_type': '${control_config.torque_control.control_type}', 'control_params': '${control_config.torque_control.control_params}', 'reward_type': 'MimicReward', 'reward_params': {'qpos_w_exp': 10.0, 'qvel_w_exp': 2.0, 'rpos_w_exp': 100.0, 'rquat_w_exp': 10.0, 'rvel_w_exp': 0.1, 'qpos_w_sum': 0.6, 'qvel_w_sum': 0.2, 'rpos_w_sum': 0.5, 'rquat_w_sum': 0.3, 'rvel_w_sum': 0.1, 'action_out_of_bounds_coeff': 0.0, 'action_rate_coeff': 0.02, 'action_size_coeff': 0.02, 'sites_for_mimic': ['pelvis_mimic', 'upper_body_mimic', 'left_hand_mimic', 'left_knee_mimic', 'left_foot_mimic', 'right_hand_mimic', 'right_knee_mimic', 'right_foot_mimic']}, 'recorder_params': {'path': [''], 'tag': ['']}}, 'hidden_layers': [512, 512, 512], 'lr': 0.0001, 'num_envs': 128, 'num_steps': 4096, 'total_timesteps': 200000000.0, 'update_epochs': 4, 'num_minibatches': 512, 'gamma': 0.99, 'gae_lambda': 0.99, 'clip_eps': 0.2, 'init_std': 0.2, 'learnable_std': False, 'use_lattice': False, 'ent_coef': 0.001, 'vf_coef': 0.5, 'max_grad_norm': 0.5, 'activation': 'relu', 'anneal_lr': False, 'weight_decay': 0.0, 'normalize_env': True, 'debug': False, 'n_seeds': 1, 'vmap_across_seeds': True, 'validation': {'active': True, 'num_steps': 100, 'num_envs': 100, 'num': 20, 'quantities': ['JointPosition', 'JointVelocity', 'RelSitePosition', 'RelSiteVelocity', 'RelSiteOrientation'], 'measures': ['EuclideanDistance', 'DynamicTimeWarping', 'DiscreteFrechetDistance'], 'rel_site_names': ['upper_body_mimic', 'left_hand_mimic', 'left_foot_mimic', 'right_hand_mimic', 'right_foot_mimic'], 'joints_to_ignore': ['pelvis_tx', 'pelvis_tz', 'pelvis_ty', 'pelvis_tilt', 'pelvis_list', 'pelvis_rotation']}}, 'control_config': {'position_control': {'control_type': 'PDControl', 'control_params': {'p_gain': [300, 100, 100, 100, 100, 100, 100, 100, 100, 200, 200, 200, 300, 40, 200, 200, 200, 300, 40], 'd_gain': [6, 2, 2, 2, 2, 2, 2, 2, 2, 5, 5, 5, 6, 2, 5, 5, 5, 6, 2]}}, 'torque_control': {'control_type': 'DefaultControl', 'control_params': None}}}
+Creating environment 'MjxSkeletonMuscle' with imitation learning task.
+GoalTrajMimic observation dimension: 233 + 168 additional observation size
+reward_params: {'qpos_w_exp': 10.0, 'qvel_w_exp': 2.0, 'rpos_w_exp': 100.0, 'rquat_w_exp': 10.0, 'rvel_w_exp': 0.1, 'qpos_w_sum': 0.6, 'qvel_w_sum': 0.2, 'rpos_w_sum': 0.5, 'rquat_w_sum': 0.3, 'rvel_w_sum': 0.1, 'action_out_of_bounds_coeff': 0.0, 'action_rate_coeff': 0.02, 'action_size_coeff': 0.02, 'sites_for_mimic': ['pelvis_mimic', 'upper_body_mimic', 'left_hand_mimic', 'left_knee_mimic', 'left_foot_mimic', 'right_hand_mimic', 'right_knee_mimic', 'right_foot_mimic']}
+self._reward_function: <loco_mujoco.core.reward.trajectory_based.MimicReward object at 0x725bdcad0f40>
+Created environment with reward function: <loco_mujoco.core.reward.trajectory_based.MimicReward object at 0x725bdcad0f40>
+reward_params: None
+self._reward_function: <loco_mujoco.core.reward.default.NoReward object at 0x725a74f274f0>
+config.experiment.num_updates set to: 381.0
+config.experiment.minibatch_size set to: 1024
+config.experiment.validation_interval set to: 19.0
+actorcritic_class: <class 'loco_mujoco.algorithms.common.networks.ActorCritic'>
+Action in PPOJax env_step: Traced<ShapedArray(float32[128,106])>with<DynamicJaxprTrace>
+Reward in LocoMjxWrapper step: Traced<ShapedArray(float32[])>with<DynamicJaxprTrace>
+Reward in NormalizeVecReward step: Traced<ShapedArray(float32[128])>with<DynamicJaxprTrace>
+Reward in PPOJax env_step: Traced<ShapedArray(float32[])>with<DynamicJaxprTrace> Traced<ShapedArray(float32[128])>with<DynamicJaxprTrace>
+Action in PPOJax env_step: Traced<ShapedArray(float32[128,106])>with<DynamicJaxprTrace>
+Reward in LocoMjxWrapper step: Traced<ShapedArray(float32[])>with<DynamicJaxprTrace>
+Reward in NormalizeVecReward step: Traced<ShapedArray(float32[128])>with<DynamicJaxprTrace>
+Reward in PPOJax env_step: Traced<ShapedArray(float32[])>with<DynamicJaxprTrace> Traced<ShapedArray(float32[128])>with<DynamicJaxprTrace>
+Reward in NormalizeVecReward step: Traced<ShapedArray(float32[100])>with<DynamicJaxprTrace>
+Reward in NormalizeVecReward step: Traced<ShapedArray(float32[100])>with<DynamicJaxprTrace>
+Action in PPOJax env_step: Traced<ShapedArray(float32[128,106])>with<DynamicJaxprTrace>
+Reward in NormalizeVecReward step: Traced<ShapedArray(float32[128])>with<DynamicJaxprTrace>
+Reward in PPOJax env_step: Traced<ShapedArray(float32[])>with<DynamicJaxprTrace> Traced<ShapedArray(float32[128])>with<DynamicJaxprTrace>
+Reward in NormalizeVecReward step: Traced<ShapedArray(float32[100])>with<DynamicJaxprTrace>
+Reward in NormalizeVecReward step: Traced<ShapedArray(float32[100])>with<DynamicJaxprTrace>
+metrics at the end of training: SummaryMetrics(mean_episode_return=Traced<ShapedArray(float32[381])>with<DynamicJaxprTrace>, mean_episode_length=Traced<ShapedArray(float32[381])>with<DynamicJaxprTrace>, max_timestep=Traced<ShapedArray(int32[381])>with<DynamicJaxprTrace>)
+
+Saved agent to: /home/ktoonen/workspace/TestLocoMuJoCo/TestExperimentCode/outputs/2026-01-20/14-08-51/PPOJax_saved.pkl
+
+{'Mean Episode Return': Array(11.9890175, dtype=float32), 'Mean Episode Length': Array(40.229095, dtype=float32)} step=524288
+{'Mean Episode Return': Array(12.06197, dtype=float32), 'Mean Episode Length': Array(40.093716, dtype=float32)} step=1048576
+{'Mean Episode Return': Array(12.135346, dtype=float32), 'Mean Episode Length': Array(40.418922, dtype=float32)} step=1572864
+{'Mean Episode Return': Array(12.199418, dtype=float32), 'Mean Episode Length': Array(40.693184, dtype=float32)} step=2097152
+{'Mean Episode Return': Array(12.303157, dtype=float32), 'Mean Episode Length': Array(40.485252, dtype=float32)} step=2621440
+{'Mean Episode Return': Array(12.377185, dtype=float32), 'Mean Episode Length': Array(40.679546, dtype=float32)} step=3145728
+{'Mean Episode Return': Array(12.445613, dtype=float32), 'Mean Episode Length': Array(40.64957, dtype=float32)} step=3670016
+{'Mean Episode Return': Array(12.576084, dtype=float32), 'Mean Episode Length': Array(40.795933, dtype=float32)} step=4194304
+{'Mean Episode Return': Array(12.748477, dtype=float32), 'Mean Episode Length': Array(41.099113, dtype=float32)} step=4718592
+{'Mean Episode Return': Array(12.940618, dtype=float32), 'Mean Episode Length': Array(41.230885, dtype=float32)} step=5242880
+{'Mean Episode Return': Array(13.158694, dtype=float32), 'Mean Episode Length': Array(41.428276, dtype=float32)} step=5767168
+{'Mean Episode Return': Array(13.375855, dtype=float32), 'Mean Episode Length': Array(41.81949, dtype=float32)} step=6291456
+{'Mean Episode Return': Array(13.609317, dtype=float32), 'Mean Episode Length': Array(42.04315, dtype=float32)} step=6815744
+{'Mean Episode Return': Array(13.8912735, dtype=float32), 'Mean Episode Length': Array(42.292664, dtype=float32)} step=7340032
+{'Mean Episode Return': Array(14.172352, dtype=float32), 'Mean Episode Length': Array(42.565987, dtype=float32)} step=7864320
+{'Mean Episode Return': Array(14.473305, dtype=float32), 'Mean Episode Length': Array(42.78049, dtype=float32)} step=8388608
+{'Mean Episode Return': Array(14.746349, dtype=float32), 'Mean Episode Length': Array(43.069023, dtype=float32)} step=8912896
+{'Mean Episode Return': Array(15.003091, dtype=float32), 'Mean Episode Length': Array(43.17949, dtype=float32)} step=9437184
+{'Mean Episode Return': Array(15.35069, dtype=float32), 'Mean Episode Length': Array(43.49755, dtype=float32)} step=9961472
+{'Validation Info/Mean Episode Return': Array(15.60579, dtype=float32), 'Validation Info/Mean Episode Length': Array(42.762432, dtype=float32)} step=9961472
+{'Mean Episode Return': Array(15.649112, dtype=float32), 'Mean Episode Length': Array(43.760597, dtype=float32)} step=10485760
+{'Mean Episode Return': Array(15.862984, dtype=float32), 'Mean Episode Length': Array(43.897068, dtype=float32)} step=11010048
+{'Mean Episode Return': Array(16.205864, dtype=float32), 'Mean Episode Length': Array(44.18002, dtype=float32)} step=11534336
+{'Mean Episode Return': Array(16.527386, dtype=float32), 'Mean Episode Length': Array(44.647186, dtype=float32)} step=12058624
+{'Mean Episode Return': Array(16.830942, dtype=float32), 'Mean Episode Length': Array(44.83238, dtype=float32)} step=12582912
+{'Mean Episode Return': Array(17.13673, dtype=float32), 'Mean Episode Length': Array(45.33552, dtype=float32)} step=13107200
+{'Mean Episode Return': Array(17.410675, dtype=float32), 'Mean Episode Length': Array(45.663532, dtype=float32)} step=13631488
+{'Mean Episode Return': Array(17.671173, dtype=float32), 'Mean Episode Length': Array(45.77963, dtype=float32)} step=14155776
+{'Mean Episode Return': Array(17.946764, dtype=float32), 'Mean Episode Length': Array(46.155914, dtype=float32)} step=14680064
+{'Mean Episode Return': Array(18.178188, dtype=float32), 'Mean Episode Length': Array(46.685955, dtype=float32)} step=15204352
+{'Mean Episode Return': Array(18.49078, dtype=float32), 'Mean Episode Length': Array(47.201187, dtype=float32)} step=15728640
+{'Mean Episode Return': Array(18.740492, dtype=float32), 'Mean Episode Length': Array(47.565792, dtype=float32)} step=16252928
+{'Mean Episode Return': Array(19.048124, dtype=float32), 'Mean Episode Length': Array(48.31105, dtype=float32)} step=16777216
+{'Mean Episode Return': Array(19.285902, dtype=float32), 'Mean Episode Length': Array(48.676735, dtype=float32)} step=17301504
+{'Mean Episode Return': Array(19.60187, dtype=float32), 'Mean Episode Length': Array(49.10259, dtype=float32)} step=17825792
+{'Mean Episode Return': Array(19.82082, dtype=float32), 'Mean Episode Length': Array(49.93021, dtype=float32)} step=18350080
+{'Mean Episode Return': Array(20.100695, dtype=float32), 'Mean Episode Length': Array(50.14327, dtype=float32)} step=18874368
+{'Mean Episode Return': Array(20.42706, dtype=float32), 'Mean Episode Length': Array(50.961395, dtype=float32)} step=19398656
+{'Mean Episode Return': Array(20.604078, dtype=float32), 'Mean Episode Length': Array(51.187305, dtype=float32)} step=19922944
+{'Validation Info/Mean Episode Return': Array(21.455412, dtype=float32), 'Validation Info/Mean Episode Length': Array(48.05195, dtype=float32)} step=19922944
+{'Mean Episode Return': Array(20.926321, dtype=float32), 'Mean Episode Length': Array(51.45635, dtype=float32)} step=20447232
+{'Mean Episode Return': Array(21.222353, dtype=float32), 'Mean Episode Length': Array(51.686783, dtype=float32)} step=20971520
+{'Mean Episode Return': Array(21.472061, dtype=float32), 'Mean Episode Length': Array(52.220497, dtype=float32)} step=21495808
+{'Mean Episode Return': Array(21.754725, dtype=float32), 'Mean Episode Length': Array(52.63985, dtype=float32)} step=22020096
+{'Mean Episode Return': Array(21.943542, dtype=float32), 'Mean Episode Length': Array(53.148087, dtype=float32)} step=22544384
+{'Mean Episode Return': Array(22.348217, dtype=float32), 'Mean Episode Length': Array(53.83159, dtype=float32)} step=23068672
+{'Mean Episode Return': Array(22.610453, dtype=float32), 'Mean Episode Length': Array(54.21126, dtype=float32)} step=23592960
+{'Mean Episode Return': Array(22.9839, dtype=float32), 'Mean Episode Length': Array(55.182976, dtype=float32)} step=24117248
+{'Mean Episode Return': Array(23.285397, dtype=float32), 'Mean Episode Length': Array(55.459293, dtype=float32)} step=24641536
+{'Mean Episode Return': Array(23.59411, dtype=float32), 'Mean Episode Length': Array(56.06613, dtype=float32)} step=25165824
+{'Mean Episode Return': Array(23.991539, dtype=float32), 'Mean Episode Length': Array(56.595943, dtype=float32)} step=25690112
+{'Mean Episode Return': Array(24.34195, dtype=float32), 'Mean Episode Length': Array(56.95448, dtype=float32)} step=26214400
+{'Mean Episode Return': Array(24.555527, dtype=float32), 'Mean Episode Length': Array(57.448574, dtype=float32)} step=26738688
+{'Mean Episode Return': Array(24.84295, dtype=float32), 'Mean Episode Length': Array(58.099037, dtype=float32)} step=27262976
+{'Mean Episode Return': Array(25.132345, dtype=float32), 'Mean Episode Length': Array(58.61074, dtype=float32)} step=27787264
+{'Mean Episode Return': Array(25.307417, dtype=float32), 'Mean Episode Length': Array(59.145966, dtype=float32)} step=28311552
+{'Mean Episode Return': Array(25.54309, dtype=float32), 'Mean Episode Length': Array(59.255714, dtype=float32)} step=28835840
+{'Mean Episode Return': Array(25.887106, dtype=float32), 'Mean Episode Length': Array(59.488647, dtype=float32)} step=29360128
+{'Mean Episode Return': Array(26.14595, dtype=float32), 'Mean Episode Length': Array(59.864872, dtype=float32)} step=29884416
+{'Validation Info/Mean Episode Return': Array(26.99302, dtype=float32), 'Validation Info/Mean Episode Length': Array(59.59292, dtype=float32)} step=29884416
+{'Mean Episode Return': Array(26.487015, dtype=float32), 'Mean Episode Length': Array(60.651787, dtype=float32)} step=30408704
+{'Mean Episode Return': Array(26.69749, dtype=float32), 'Mean Episode Length': Array(61.277596, dtype=float32)} step=30932992
+{'Mean Episode Return': Array(26.99218, dtype=float32), 'Mean Episode Length': Array(61.56281, dtype=float32)} step=31457280
+{'Mean Episode Return': Array(27.283579, dtype=float32), 'Mean Episode Length': Array(61.963703, dtype=float32)} step=31981568
+{'Mean Episode Return': Array(27.487463, dtype=float32), 'Mean Episode Length': Array(62.635334, dtype=float32)} step=32505856
+{'Mean Episode Return': Array(27.728893, dtype=float32), 'Mean Episode Length': Array(62.744106, dtype=float32)} step=33030144
+{'Mean Episode Return': Array(27.964508, dtype=float32), 'Mean Episode Length': Array(63.34304, dtype=float32)} step=33554432
+{'Mean Episode Return': Array(28.315334, dtype=float32), 'Mean Episode Length': Array(63.620117, dtype=float32)} step=34078720
+{'Mean Episode Return': Array(28.757517, dtype=float32), 'Mean Episode Length': Array(64.42836, dtype=float32)} step=34603008
+{'Mean Episode Return': Array(29.02593, dtype=float32), 'Mean Episode Length': Array(64.803215, dtype=float32)} step=35127296
+{'Mean Episode Return': Array(29.267286, dtype=float32), 'Mean Episode Length': Array(65.05113, dtype=float32)} step=35651584
+{'Mean Episode Return': Array(29.576694, dtype=float32), 'Mean Episode Length': Array(65.364, dtype=float32)} step=36175872
+{'Mean Episode Return': Array(29.82756, dtype=float32), 'Mean Episode Length': Array(66.15643, dtype=float32)} step=36700160
+{'Mean Episode Return': Array(30.175434, dtype=float32), 'Mean Episode Length': Array(66.68756, dtype=float32)} step=37224448
+{'Mean Episode Return': Array(30.442217, dtype=float32), 'Mean Episode Length': Array(67.30757, dtype=float32)} step=37748736
+{'Mean Episode Return': Array(30.736492, dtype=float32), 'Mean Episode Length': Array(67.30656, dtype=float32)} step=38273024
+{'Mean Episode Return': Array(31.016409, dtype=float32), 'Mean Episode Length': Array(68.01959, dtype=float32)} step=38797312
+{'Mean Episode Return': Array(31.373053, dtype=float32), 'Mean Episode Length': Array(68.7503, dtype=float32)} step=39321600
+{'Mean Episode Return': Array(31.649685, dtype=float32), 'Mean Episode Length': Array(69.39101, dtype=float32)} step=39845888
+{'Validation Info/Mean Episode Return': Array(31.842167, dtype=float32), 'Validation Info/Mean Episode Length': Array(69.1134, dtype=float32)} step=39845888
+{'Mean Episode Return': Array(31.91425, dtype=float32), 'Mean Episode Length': Array(69.49463, dtype=float32)} step=40370176
+{'Mean Episode Return': Array(32.328587, dtype=float32), 'Mean Episode Length': Array(70.10028, dtype=float32)} step=40894464
+{'Mean Episode Return': Array(32.6077, dtype=float32), 'Mean Episode Length': Array(70.58395, dtype=float32)} step=41418752
+{'Mean Episode Return': Array(32.9795, dtype=float32), 'Mean Episode Length': Array(71.122795, dtype=float32)} step=41943040
+{'Mean Episode Return': Array(33.322895, dtype=float32), 'Mean Episode Length': Array(71.79066, dtype=float32)} step=42467328
+{'Mean Episode Return': Array(33.647125, dtype=float32), 'Mean Episode Length': Array(72.161285, dtype=float32)} step=42991616
+{'Mean Episode Return': Array(33.924892, dtype=float32), 'Mean Episode Length': Array(72.69214, dtype=float32)} step=43515904
+{'Mean Episode Return': Array(34.152325, dtype=float32), 'Mean Episode Length': Array(73.282295, dtype=float32)} step=44040192
+{'Mean Episode Return': Array(34.379158, dtype=float32), 'Mean Episode Length': Array(73.55312, dtype=float32)} step=44564480
+{'Mean Episode Return': Array(34.882393, dtype=float32), 'Mean Episode Length': Array(74.531075, dtype=float32)} step=45088768
+{'Mean Episode Return': Array(35.061283, dtype=float32), 'Mean Episode Length': Array(74.74544, dtype=float32)} step=45613056
+{'Mean Episode Return': Array(35.5249, dtype=float32), 'Mean Episode Length': Array(75.22973, dtype=float32)} step=46137344
+{'Mean Episode Return': Array(35.754642, dtype=float32), 'Mean Episode Length': Array(75.63698, dtype=float32)} step=46661632
+{'Mean Episode Return': Array(36.087013, dtype=float32), 'Mean Episode Length': Array(76.18464, dtype=float32)} step=47185920
+{'Mean Episode Return': Array(36.376305, dtype=float32), 'Mean Episode Length': Array(76.59175, dtype=float32)} step=47710208
+{'Mean Episode Return': Array(36.64473, dtype=float32), 'Mean Episode Length': Array(77.0429, dtype=float32)} step=48234496
+{'Mean Episode Return': Array(37.19927, dtype=float32), 'Mean Episode Length': Array(77.97266, dtype=float32)} step=48758784
+{'Mean Episode Return': Array(37.331505, dtype=float32), 'Mean Episode Length': Array(77.96342, dtype=float32)} step=49283072
+{'Mean Episode Return': Array(37.75237, dtype=float32), 'Mean Episode Length': Array(78.50996, dtype=float32)} step=49807360
+{'Validation Info/Mean Episode Return': Array(36.36256, dtype=float32), 'Validation Info/Mean Episode Length': Array(72.28571, dtype=float32)} step=49807360
+{'Mean Episode Return': Array(38.167595, dtype=float32), 'Mean Episode Length': Array(79.22373, dtype=float32)} step=50331648
+{'Mean Episode Return': Array(38.72819, dtype=float32), 'Mean Episode Length': Array(80.25371, dtype=float32)} step=50855936
+{'Mean Episode Return': Array(39.08014, dtype=float32), 'Mean Episode Length': Array(80.726265, dtype=float32)} step=51380224
+{'Mean Episode Return': Array(39.254215, dtype=float32), 'Mean Episode Length': Array(80.74395, dtype=float32)} step=51904512
+{'Mean Episode Return': Array(39.441338, dtype=float32), 'Mean Episode Length': Array(80.986725, dtype=float32)} step=52428800
+{'Mean Episode Return': Array(39.701855, dtype=float32), 'Mean Episode Length': Array(81.19789, dtype=float32)} step=52953088
+{'Mean Episode Return': Array(40.07161, dtype=float32), 'Mean Episode Length': Array(81.64957, dtype=float32)} step=53477376
+{'Mean Episode Return': Array(40.51345, dtype=float32), 'Mean Episode Length': Array(82.34332, dtype=float32)} step=54001664
+{'Mean Episode Return': Array(41.074135, dtype=float32), 'Mean Episode Length': Array(83.2907, dtype=float32)} step=54525952
+{'Mean Episode Return': Array(41.819546, dtype=float32), 'Mean Episode Length': Array(84.4333, dtype=float32)} step=55050240
+{'Mean Episode Return': Array(42.194935, dtype=float32), 'Mean Episode Length': Array(84.95115, dtype=float32)} step=55574528
+{'Mean Episode Return': Array(42.38123, dtype=float32), 'Mean Episode Length': Array(85.10544, dtype=float32)} step=56098816
+{'Mean Episode Return': Array(42.881737, dtype=float32), 'Mean Episode Length': Array(85.94019, dtype=float32)} step=56623104
+{'Mean Episode Return': Array(43.43588, dtype=float32), 'Mean Episode Length': Array(86.967995, dtype=float32)} step=57147392
+{'Mean Episode Return': Array(43.70385, dtype=float32), 'Mean Episode Length': Array(87.0585, dtype=float32)} step=57671680
+{'Mean Episode Return': Array(44.13309, dtype=float32), 'Mean Episode Length': Array(87.90273, dtype=float32)} step=58195968
+{'Mean Episode Return': Array(44.24763, dtype=float32), 'Mean Episode Length': Array(88.01091, dtype=float32)} step=58720256
+{'Mean Episode Return': Array(44.83164, dtype=float32), 'Mean Episode Length': Array(88.93415, dtype=float32)} step=59244544
+{'Mean Episode Return': Array(45.066418, dtype=float32), 'Mean Episode Length': Array(89.08417, dtype=float32)} step=59768832
+{'Validation Info/Mean Episode Return': Array(41.40748, dtype=float32), 'Validation Info/Mean Episode Length': Array(79.41428, dtype=float32)} step=59768832
+{'Mean Episode Return': Array(45.489265, dtype=float32), 'Mean Episode Length': Array(89.65589, dtype=float32)} step=60293120
+{'Mean Episode Return': Array(45.86246, dtype=float32), 'Mean Episode Length': Array(90.28881, dtype=float32)} step=60817408
+{'Mean Episode Return': Array(46.417046, dtype=float32), 'Mean Episode Length': Array(91.38888, dtype=float32)} step=61341696
+{'Mean Episode Return': Array(46.721905, dtype=float32), 'Mean Episode Length': Array(91.68669, dtype=float32)} step=61865984
+{'Mean Episode Return': Array(47.245144, dtype=float32), 'Mean Episode Length': Array(92.773315, dtype=float32)} step=62390272
+{'Mean Episode Return': Array(47.1796, dtype=float32), 'Mean Episode Length': Array(92.85775, dtype=float32)} step=62914560
+{'Mean Episode Return': Array(48.096367, dtype=float32), 'Mean Episode Length': Array(94.38781, dtype=float32)} step=63438848
+{'Mean Episode Return': Array(48.23645, dtype=float32), 'Mean Episode Length': Array(94.63348, dtype=float32)} step=63963136
+{'Mean Episode Return': Array(48.95748, dtype=float32), 'Mean Episode Length': Array(95.38402, dtype=float32)} step=64487424
+{'Mean Episode Return': Array(49.302513, dtype=float32), 'Mean Episode Length': Array(96.27954, dtype=float32)} step=65011712
+{'Mean Episode Return': Array(50.22303, dtype=float32), 'Mean Episode Length': Array(97.909874, dtype=float32)} step=65536000
+{'Mean Episode Return': Array(50.179092, dtype=float32), 'Mean Episode Length': Array(97.969025, dtype=float32)} step=66060288
+{'Mean Episode Return': Array(51.155308, dtype=float32), 'Mean Episode Length': Array(99.71695, dtype=float32)} step=66584576
+{'Mean Episode Return': Array(51.28247, dtype=float32), 'Mean Episode Length': Array(99.84076, dtype=float32)} step=67108864
+{'Mean Episode Return': Array(51.469517, dtype=float32), 'Mean Episode Length': Array(99.80967, dtype=float32)} step=67633152
+{'Mean Episode Return': Array(52.298603, dtype=float32), 'Mean Episode Length': Array(101.52805, dtype=float32)} step=68157440
+{'Mean Episode Return': Array(52.86823, dtype=float32), 'Mean Episode Length': Array(102.15299, dtype=float32)} step=68681728
+{'Mean Episode Return': Array(53.25388, dtype=float32), 'Mean Episode Length': Array(102.48425, dtype=float32)} step=69206016
+{'Mean Episode Return': Array(53.426064, dtype=float32), 'Mean Episode Length': Array(103.05483, dtype=float32)} step=69730304
+{'Validation Info/Mean Episode Return': Array(42.899475, dtype=float32), 'Validation Info/Mean Episode Length': Array(81.723404, dtype=float32)} step=69730304
+{'Mean Episode Return': Array(54.15692, dtype=float32), 'Mean Episode Length': Array(104.20922, dtype=float32)} step=70254592
+{'Mean Episode Return': Array(54.98681, dtype=float32), 'Mean Episode Length': Array(105.52677, dtype=float32)} step=70778880
+{'Mean Episode Return': Array(55.161846, dtype=float32), 'Mean Episode Length': Array(105.73608, dtype=float32)} step=71303168
+{'Mean Episode Return': Array(55.532978, dtype=float32), 'Mean Episode Length': Array(106.76269, dtype=float32)} step=71827456
+{'Mean Episode Return': Array(56.098763, dtype=float32), 'Mean Episode Length': Array(107.74205, dtype=float32)} step=72351744
+{'Mean Episode Return': Array(56.633118, dtype=float32), 'Mean Episode Length': Array(108.60718, dtype=float32)} step=72876032
+{'Mean Episode Return': Array(57.24179, dtype=float32), 'Mean Episode Length': Array(109.87264, dtype=float32)} step=73400320
+{'Mean Episode Return': Array(57.765186, dtype=float32), 'Mean Episode Length': Array(110.12138, dtype=float32)} step=73924608
+{'Mean Episode Return': Array(58.599026, dtype=float32), 'Mean Episode Length': Array(111.76503, dtype=float32)} step=74448896
+{'Mean Episode Return': Array(58.45014, dtype=float32), 'Mean Episode Length': Array(111.46703, dtype=float32)} step=74973184
+{'Mean Episode Return': Array(58.33501, dtype=float32), 'Mean Episode Length': Array(111.23709, dtype=float32)} step=75497472
+{'Mean Episode Return': Array(58.81527, dtype=float32), 'Mean Episode Length': Array(111.992096, dtype=float32)} step=76021760
+{'Mean Episode Return': Array(59.60656, dtype=float32), 'Mean Episode Length': Array(112.59833, dtype=float32)} step=76546048
+{'Mean Episode Return': Array(59.891304, dtype=float32), 'Mean Episode Length': Array(113.13909, dtype=float32)} step=77070336
+{'Mean Episode Return': Array(60.791782, dtype=float32), 'Mean Episode Length': Array(114.62213, dtype=float32)} step=77594624
+{'Mean Episode Return': Array(61.251278, dtype=float32), 'Mean Episode Length': Array(115.42257, dtype=float32)} step=78118912
+{'Mean Episode Return': Array(62.045174, dtype=float32), 'Mean Episode Length': Array(116.189095, dtype=float32)} step=78643200
+{'Mean Episode Return': Array(61.54925, dtype=float32), 'Mean Episode Length': Array(115.05311, dtype=float32)} step=79167488
+{'Mean Episode Return': Array(63.013004, dtype=float32), 'Mean Episode Length': Array(117.51559, dtype=float32)} step=79691776
+{'Validation Info/Mean Episode Return': Array(44.035694, dtype=float32), 'Validation Info/Mean Episode Length': Array(82.03334, dtype=float32)} step=79691776
+{'Mean Episode Return': Array(63.449776, dtype=float32), 'Mean Episode Length': Array(118.0895, dtype=float32)} step=80216064
+{'Mean Episode Return': Array(63.596592, dtype=float32), 'Mean Episode Length': Array(118.55361, dtype=float32)} step=80740352
+{'Mean Episode Return': Array(64.47825, dtype=float32), 'Mean Episode Length': Array(119.988106, dtype=float32)} step=81264640
+{'Mean Episode Return': Array(64.66818, dtype=float32), 'Mean Episode Length': Array(120.02449, dtype=float32)} step=81788928
+{'Mean Episode Return': Array(65.73988, dtype=float32), 'Mean Episode Length': Array(121.70937, dtype=float32)} step=82313216
+{'Mean Episode Return': Array(66.14229, dtype=float32), 'Mean Episode Length': Array(122.45902, dtype=float32)} step=82837504
+{'Mean Episode Return': Array(65.9408, dtype=float32), 'Mean Episode Length': Array(122.4471, dtype=float32)} step=83361792
+{'Mean Episode Return': Array(67.45513, dtype=float32), 'Mean Episode Length': Array(124.79249, dtype=float32)} step=83886080
+{'Mean Episode Return': Array(67.57036, dtype=float32), 'Mean Episode Length': Array(125.32114, dtype=float32)} step=84410368
+{'Mean Episode Return': Array(68.11285, dtype=float32), 'Mean Episode Length': Array(126.07237, dtype=float32)} step=84934656
+{'Mean Episode Return': Array(68.99987, dtype=float32), 'Mean Episode Length': Array(127.48431, dtype=float32)} step=85458944
+{'Mean Episode Return': Array(69.96741, dtype=float32), 'Mean Episode Length': Array(129.14471, dtype=float32)} step=85983232
+{'Mean Episode Return': Array(70.65215, dtype=float32), 'Mean Episode Length': Array(130.16257, dtype=float32)} step=86507520
+{'Mean Episode Return': Array(71.71149, dtype=float32), 'Mean Episode Length': Array(131.91313, dtype=float32)} step=87031808
+{'Mean Episode Return': Array(71.82517, dtype=float32), 'Mean Episode Length': Array(132.35976, dtype=float32)} step=87556096
+{'Mean Episode Return': Array(72.54949, dtype=float32), 'Mean Episode Length': Array(133.2932, dtype=float32)} step=88080384
+{'Mean Episode Return': Array(72.83556, dtype=float32), 'Mean Episode Length': Array(133.49593, dtype=float32)} step=88604672
+{'Mean Episode Return': Array(74.30877, dtype=float32), 'Mean Episode Length': Array(135.8118, dtype=float32)} step=89128960
+{'Mean Episode Return': Array(74.88914, dtype=float32), 'Mean Episode Length': Array(136.99478, dtype=float32)} step=89653248
+{'Validation Info/Mean Episode Return': Array(44.10452, dtype=float32), 'Validation Info/Mean Episode Length': Array(82.35, dtype=float32)} step=89653248
+{'Mean Episode Return': Array(75.16087, dtype=float32), 'Mean Episode Length': Array(137.56491, dtype=float32)} step=90177536
+{'Mean Episode Return': Array(75.6004, dtype=float32), 'Mean Episode Length': Array(138.18488, dtype=float32)} step=90701824
+{'Mean Episode Return': Array(76.44791, dtype=float32), 'Mean Episode Length': Array(138.88528, dtype=float32)} step=91226112
+{'Mean Episode Return': Array(77.343185, dtype=float32), 'Mean Episode Length': Array(140.35023, dtype=float32)} step=91750400
+{'Mean Episode Return': Array(76.92495, dtype=float32), 'Mean Episode Length': Array(139.26318, dtype=float32)} step=92274688
+{'Mean Episode Return': Array(78.09876, dtype=float32), 'Mean Episode Length': Array(141.13376, dtype=float32)} step=92798976
+{'Mean Episode Return': Array(79.078865, dtype=float32), 'Mean Episode Length': Array(142.61917, dtype=float32)} step=93323264
+{'Mean Episode Return': Array(78.7384, dtype=float32), 'Mean Episode Length': Array(142.44472, dtype=float32)} step=93847552
+{'Mean Episode Return': Array(78.97543, dtype=float32), 'Mean Episode Length': Array(142.60072, dtype=float32)} step=94371840
+{'Mean Episode Return': Array(79.94381, dtype=float32), 'Mean Episode Length': Array(144.27863, dtype=float32)} step=94896128
+{'Mean Episode Return': Array(81.07566, dtype=float32), 'Mean Episode Length': Array(146.2038, dtype=float32)} step=95420416
+{'Mean Episode Return': Array(81.891945, dtype=float32), 'Mean Episode Length': Array(147.58017, dtype=float32)} step=95944704
+{'Mean Episode Return': Array(82.27099, dtype=float32), 'Mean Episode Length': Array(147.99689, dtype=float32)} step=96468992
+{'Mean Episode Return': Array(82.66219, dtype=float32), 'Mean Episode Length': Array(148.90154, dtype=float32)} step=96993280
+{'Mean Episode Return': Array(83.147835, dtype=float32), 'Mean Episode Length': Array(149.6028, dtype=float32)} step=97517568
+{'Mean Episode Return': Array(83.253, dtype=float32), 'Mean Episode Length': Array(150.16037, dtype=float32)} step=98041856
+{'Mean Episode Return': Array(83.79754, dtype=float32), 'Mean Episode Length': Array(150.58182, dtype=float32)} step=98566144
+{'Mean Episode Return': Array(85.052086, dtype=float32), 'Mean Episode Length': Array(152.4354, dtype=float32)} step=99090432
+{'Mean Episode Return': Array(85.54947, dtype=float32), 'Mean Episode Length': Array(153.05652, dtype=float32)} step=99614720
+{'Validation Info/Mean Episode Return': Array(44.313652, dtype=float32), 'Validation Info/Mean Episode Length': Array(82.41667, dtype=float32)} step=99614720
+{'Mean Episode Return': Array(85.945885, dtype=float32), 'Mean Episode Length': Array(153.423, dtype=float32)} step=100139008
+{'Mean Episode Return': Array(86.048546, dtype=float32), 'Mean Episode Length': Array(153.76814, dtype=float32)} step=100663296
+{'Mean Episode Return': Array(87.674194, dtype=float32), 'Mean Episode Length': Array(156.12173, dtype=float32)} step=101187584
+{'Mean Episode Return': Array(88.28373, dtype=float32), 'Mean Episode Length': Array(156.9159, dtype=float32)} step=101711872
+{'Mean Episode Return': Array(88.61046, dtype=float32), 'Mean Episode Length': Array(157.5428, dtype=float32)} step=102236160
+{'Mean Episode Return': Array(89.98641, dtype=float32), 'Mean Episode Length': Array(159.79721, dtype=float32)} step=102760448
+{'Mean Episode Return': Array(90.014275, dtype=float32), 'Mean Episode Length': Array(160.13574, dtype=float32)} step=103284736
+{'Mean Episode Return': Array(92.114174, dtype=float32), 'Mean Episode Length': Array(163.08891, dtype=float32)} step=103809024
+{'Mean Episode Return': Array(92.59896, dtype=float32), 'Mean Episode Length': Array(163.83156, dtype=float32)} step=104333312
+{'Mean Episode Return': Array(92.677376, dtype=float32), 'Mean Episode Length': Array(163.88654, dtype=float32)} step=104857600
+{'Mean Episode Return': Array(94.409935, dtype=float32), 'Mean Episode Length': Array(166.51352, dtype=float32)} step=105381888
+{'Mean Episode Return': Array(95.603775, dtype=float32), 'Mean Episode Length': Array(168.46034, dtype=float32)} step=105906176
+{'Mean Episode Return': Array(95.67537, dtype=float32), 'Mean Episode Length': Array(168.6211, dtype=float32)} step=106430464
+{'Mean Episode Return': Array(97.16194, dtype=float32), 'Mean Episode Length': Array(171.34369, dtype=float32)} step=106954752
+{'Mean Episode Return': Array(97.200424, dtype=float32), 'Mean Episode Length': Array(171.52159, dtype=float32)} step=107479040
+{'Mean Episode Return': Array(98.15848, dtype=float32), 'Mean Episode Length': Array(173.10605, dtype=float32)} step=108003328
+{'Mean Episode Return': Array(99.14989, dtype=float32), 'Mean Episode Length': Array(174.61847, dtype=float32)} step=108527616
+{'Mean Episode Return': Array(98.54652, dtype=float32), 'Mean Episode Length': Array(174.08626, dtype=float32)} step=109051904
+{'Mean Episode Return': Array(101.11097, dtype=float32), 'Mean Episode Length': Array(177.38626, dtype=float32)} step=109576192
+{'Validation Info/Mean Episode Return': Array(45.13966, dtype=float32), 'Validation Info/Mean Episode Length': Array(85.583336, dtype=float32)} step=109576192
+{'Mean Episode Return': Array(103.26334, dtype=float32), 'Mean Episode Length': Array(181.16754, dtype=float32)} step=110100480
+{'Mean Episode Return': Array(101.36676, dtype=float32), 'Mean Episode Length': Array(178.15146, dtype=float32)} step=110624768
+{'Mean Episode Return': Array(103.213844, dtype=float32), 'Mean Episode Length': Array(181.18451, dtype=float32)} step=111149056
+{'Mean Episode Return': Array(104.1637, dtype=float32), 'Mean Episode Length': Array(182.8177, dtype=float32)} step=111673344
+{'Mean Episode Return': Array(105.06993, dtype=float32), 'Mean Episode Length': Array(184.10571, dtype=float32)} step=112197632
+{'Mean Episode Return': Array(105.672745, dtype=float32), 'Mean Episode Length': Array(184.37646, dtype=float32)} step=112721920
+{'Mean Episode Return': Array(106.75114, dtype=float32), 'Mean Episode Length': Array(186.19908, dtype=float32)} step=113246208
+{'Mean Episode Return': Array(107.95533, dtype=float32), 'Mean Episode Length': Array(188.78046, dtype=float32)} step=113770496
+{'Mean Episode Return': Array(107.4848, dtype=float32), 'Mean Episode Length': Array(187.72243, dtype=float32)} step=114294784
+{'Mean Episode Return': Array(110.4507, dtype=float32), 'Mean Episode Length': Array(192.82588, dtype=float32)} step=114819072
+{'Mean Episode Return': Array(110.96415, dtype=float32), 'Mean Episode Length': Array(193.78044, dtype=float32)} step=115343360
+{'Mean Episode Return': Array(113.08455, dtype=float32), 'Mean Episode Length': Array(197.06544, dtype=float32)} step=115867648
+{'Mean Episode Return': Array(115.37364, dtype=float32), 'Mean Episode Length': Array(200.12405, dtype=float32)} step=116391936
+{'Mean Episode Return': Array(114.073105, dtype=float32), 'Mean Episode Length': Array(198.16321, dtype=float32)} step=116916224
+{'Mean Episode Return': Array(117.105934, dtype=float32), 'Mean Episode Length': Array(203.19418, dtype=float32)} step=117440512
+{'Mean Episode Return': Array(118.570625, dtype=float32), 'Mean Episode Length': Array(205.27463, dtype=float32)} step=117964800
+{'Mean Episode Return': Array(121.206215, dtype=float32), 'Mean Episode Length': Array(209.52728, dtype=float32)} step=118489088
+{'Mean Episode Return': Array(119.62512, dtype=float32), 'Mean Episode Length': Array(207.18535, dtype=float32)} step=119013376
+{'Mean Episode Return': Array(123.3112, dtype=float32), 'Mean Episode Length': Array(212.38312, dtype=float32)} step=119537664
+{'Validation Info/Mean Episode Return': Array(45.986454, dtype=float32), 'Validation Info/Mean Episode Length': Array(84.42857, dtype=float32)} step=119537664
+{'Mean Episode Return': Array(125.47932, dtype=float32), 'Mean Episode Length': Array(216.1146, dtype=float32)} step=120061952
+{'Mean Episode Return': Array(127.373726, dtype=float32), 'Mean Episode Length': Array(218.47862, dtype=float32)} step=120586240
+{'Mean Episode Return': Array(127.85026, dtype=float32), 'Mean Episode Length': Array(219.1461, dtype=float32)} step=121110528
+{'Mean Episode Return': Array(128.48969, dtype=float32), 'Mean Episode Length': Array(219.34355, dtype=float32)} step=121634816
+{'Mean Episode Return': Array(131.11615, dtype=float32), 'Mean Episode Length': Array(223.39496, dtype=float32)} step=122159104
+{'Mean Episode Return': Array(131.5814, dtype=float32), 'Mean Episode Length': Array(224.17038, dtype=float32)} step=122683392
+{'Mean Episode Return': Array(133.80862, dtype=float32), 'Mean Episode Length': Array(228.1243, dtype=float32)} step=123207680
+{'Mean Episode Return': Array(136.48285, dtype=float32), 'Mean Episode Length': Array(232.40825, dtype=float32)} step=123731968
+{'Mean Episode Return': Array(141.74512, dtype=float32), 'Mean Episode Length': Array(240.78754, dtype=float32)} step=124256256
+{'Mean Episode Return': Array(143.79143, dtype=float32), 'Mean Episode Length': Array(244.0615, dtype=float32)} step=124780544
+{'Mean Episode Return': Array(144.26302, dtype=float32), 'Mean Episode Length': Array(244.67474, dtype=float32)} step=125304832
+{'Mean Episode Return': Array(148.86292, dtype=float32), 'Mean Episode Length': Array(251.19102, dtype=float32)} step=125829120
+{'Mean Episode Return': Array(147.07442, dtype=float32), 'Mean Episode Length': Array(247.84235, dtype=float32)} step=126353408
+{'Mean Episode Return': Array(149.4206, dtype=float32), 'Mean Episode Length': Array(250.95027, dtype=float32)} step=126877696
+{'Mean Episode Return': Array(157.68138, dtype=float32), 'Mean Episode Length': Array(265.24707, dtype=float32)} step=127401984
+{'Mean Episode Return': Array(158.04924, dtype=float32), 'Mean Episode Length': Array(265.79196, dtype=float32)} step=127926272
+{'Mean Episode Return': Array(162.41624, dtype=float32), 'Mean Episode Length': Array(271.99277, dtype=float32)} step=128450560
+{'Mean Episode Return': Array(161.1107, dtype=float32), 'Mean Episode Length': Array(269.58496, dtype=float32)} step=128974848
+{'Mean Episode Return': Array(162.57106, dtype=float32), 'Mean Episode Length': Array(271.99475, dtype=float32)} step=129499136
+{'Validation Info/Mean Episode Return': Array(51.208046, dtype=float32), 'Validation Info/Mean Episode Length': Array(93.85715, dtype=float32)} step=129499136
+{'Mean Episode Return': Array(168.81758, dtype=float32), 'Mean Episode Length': Array(282.07507, dtype=float32)} step=130023424
+{'Mean Episode Return': Array(171.67833, dtype=float32), 'Mean Episode Length': Array(286.12775, dtype=float32)} step=130547712
+{'Mean Episode Return': Array(178.07025, dtype=float32), 'Mean Episode Length': Array(296.18677, dtype=float32)} step=131072000
+{'Mean Episode Return': Array(179.75177, dtype=float32), 'Mean Episode Length': Array(298.233, dtype=float32)} step=131596288
+{'Mean Episode Return': Array(181.46945, dtype=float32), 'Mean Episode Length': Array(300.02017, dtype=float32)} step=132120576
+{'Mean Episode Return': Array(186.96077, dtype=float32), 'Mean Episode Length': Array(309.1666, dtype=float32)} step=132644864
+{'Mean Episode Return': Array(200.90192, dtype=float32), 'Mean Episode Length': Array(329.41306, dtype=float32)} step=133169152
+{'Mean Episode Return': Array(200.25392, dtype=float32), 'Mean Episode Length': Array(327.18625, dtype=float32)} step=133693440
+{'Mean Episode Return': Array(207.91235, dtype=float32), 'Mean Episode Length': Array(338.16495, dtype=float32)} step=134217728
+{'Mean Episode Return': Array(218.5148, dtype=float32), 'Mean Episode Length': Array(355.55765, dtype=float32)} step=134742016
+{'Mean Episode Return': Array(214.82394, dtype=float32), 'Mean Episode Length': Array(349.49832, dtype=float32)} step=135266304
+{'Mean Episode Return': Array(230.12381, dtype=float32), 'Mean Episode Length': Array(371.46323, dtype=float32)} step=135790592
+{'Mean Episode Return': Array(230.32745, dtype=float32), 'Mean Episode Length': Array(371.2051, dtype=float32)} step=136314880
+{'Mean Episode Return': Array(235.41219, dtype=float32), 'Mean Episode Length': Array(378.19727, dtype=float32)} step=136839168
+{'Mean Episode Return': Array(242.96645, dtype=float32), 'Mean Episode Length': Array(389.61877, dtype=float32)} step=137363456
+{'Mean Episode Return': Array(252.61763, dtype=float32), 'Mean Episode Length': Array(404.6659, dtype=float32)} step=137887744
+{'Mean Episode Return': Array(255.73264, dtype=float32), 'Mean Episode Length': Array(407.17838, dtype=float32)} step=138412032
+{'Mean Episode Return': Array(270.78262, dtype=float32), 'Mean Episode Length': Array(427.52814, dtype=float32)} step=138936320
+{'Mean Episode Return': Array(274.1092, dtype=float32), 'Mean Episode Length': Array(431.97354, dtype=float32)} step=139460608
+{'Validation Info/Mean Episode Return': Array(53.271538, dtype=float32), 'Validation Info/Mean Episode Length': Array(99.66667, dtype=float32)} step=139460608
+{'Mean Episode Return': Array(288.6301, dtype=float32), 'Mean Episode Length': Array(451.88528, dtype=float32)} step=139984896
+{'Mean Episode Return': Array(279.5759, dtype=float32), 'Mean Episode Length': Array(437.83896, dtype=float32)} step=140509184
+{'Mean Episode Return': Array(294.64795, dtype=float32), 'Mean Episode Length': Array(459.39615, dtype=float32)} step=141033472
+{'Mean Episode Return': Array(300.34256, dtype=float32), 'Mean Episode Length': Array(466.30185, dtype=float32)} step=141557760
+{'Mean Episode Return': Array(302.73163, dtype=float32), 'Mean Episode Length': Array(469.2111, dtype=float32)} step=142082048
+{'Mean Episode Return': Array(308.36896, dtype=float32), 'Mean Episode Length': Array(478.07004, dtype=float32)} step=142606336
+{'Mean Episode Return': Array(320.71317, dtype=float32), 'Mean Episode Length': Array(496.83865, dtype=float32)} step=143130624
+{'Mean Episode Return': Array(320.53174, dtype=float32), 'Mean Episode Length': Array(497.46976, dtype=float32)} step=143654912
+{'Mean Episode Return': Array(350.10532, dtype=float32), 'Mean Episode Length': Array(536.1087, dtype=float32)} step=144179200
+{'Mean Episode Return': Array(324.94183, dtype=float32), 'Mean Episode Length': Array(500.8685, dtype=float32)} step=144703488
+{'Mean Episode Return': Array(343.538, dtype=float32), 'Mean Episode Length': Array(525.1858, dtype=float32)} step=145227776
+{'Mean Episode Return': Array(349.12323, dtype=float32), 'Mean Episode Length': Array(531.2997, dtype=float32)} step=145752064
+{'Mean Episode Return': Array(352.90213, dtype=float32), 'Mean Episode Length': Array(535.2412, dtype=float32)} step=146276352
+{'Mean Episode Return': Array(370.61795, dtype=float32), 'Mean Episode Length': Array(557.2862, dtype=float32)} step=146800640
+{'Mean Episode Return': Array(372.97794, dtype=float32), 'Mean Episode Length': Array(562.6771, dtype=float32)} step=147324928
+{'Mean Episode Return': Array(386.46115, dtype=float32), 'Mean Episode Length': Array(580.2376, dtype=float32)} step=147849216
+{'Mean Episode Return': Array(388.0235, dtype=float32), 'Mean Episode Length': Array(581.8266, dtype=float32)} step=148373504
+{'Mean Episode Return': Array(386.47635, dtype=float32), 'Mean Episode Length': Array(578.18616, dtype=float32)} step=148897792
+{'Mean Episode Return': Array(394.8693, dtype=float32), 'Mean Episode Length': Array(589.9189, dtype=float32)} step=149422080
+{'Validation Info/Mean Episode Return': Array(40.366364, dtype=float32), 'Validation Info/Mean Episode Length': Array(79.5, dtype=float32)} step=149422080
+{'Mean Episode Return': Array(408.88318, dtype=float32), 'Mean Episode Length': Array(605.40375, dtype=float32)} step=149946368
+{'Mean Episode Return': Array(417.42517, dtype=float32), 'Mean Episode Length': Array(615.237, dtype=float32)} step=150470656
+{'Mean Episode Return': Array(424.91693, dtype=float32), 'Mean Episode Length': Array(625.73065, dtype=float32)} step=150994944
+{'Mean Episode Return': Array(434.72223, dtype=float32), 'Mean Episode Length': Array(635.13525, dtype=float32)} step=151519232
+{'Mean Episode Return': Array(445.8406, dtype=float32), 'Mean Episode Length': Array(647.6867, dtype=float32)} step=152043520
+{'Mean Episode Return': Array(442.7323, dtype=float32), 'Mean Episode Length': Array(643.0875, dtype=float32)} step=152567808
+{'Mean Episode Return': Array(438.5446, dtype=float32), 'Mean Episode Length': Array(636.6374, dtype=float32)} step=153092096
+{'Mean Episode Return': Array(435.5783, dtype=float32), 'Mean Episode Length': Array(633.1068, dtype=float32)} step=153616384
+{'Mean Episode Return': Array(429.76016, dtype=float32), 'Mean Episode Length': Array(619.38446, dtype=float32)} step=154140672
+{'Mean Episode Return': Array(452.4098, dtype=float32), 'Mean Episode Length': Array(651.4197, dtype=float32)} step=154664960
+{'Mean Episode Return': Array(450.69254, dtype=float32), 'Mean Episode Length': Array(647.2846, dtype=float32)} step=155189248
+{'Mean Episode Return': Array(442.89935, dtype=float32), 'Mean Episode Length': Array(636.0875, dtype=float32)} step=155713536
+{'Mean Episode Return': Array(463.81604, dtype=float32), 'Mean Episode Length': Array(662.43866, dtype=float32)} step=156237824
+{'Mean Episode Return': Array(471.1009, dtype=float32), 'Mean Episode Length': Array(670.5091, dtype=float32)} step=156762112
+{'Mean Episode Return': Array(458.57474, dtype=float32), 'Mean Episode Length': Array(654.78845, dtype=float32)} step=157286400
+{'Mean Episode Return': Array(459.4749, dtype=float32), 'Mean Episode Length': Array(654.7206, dtype=float32)} step=157810688
+{'Mean Episode Return': Array(468.84747, dtype=float32), 'Mean Episode Length': Array(665.53784, dtype=float32)} step=158334976
+{'Mean Episode Return': Array(453.72226, dtype=float32), 'Mean Episode Length': Array(642.86237, dtype=float32)} step=158859264
+{'Mean Episode Return': Array(459.32904, dtype=float32), 'Mean Episode Length': Array(652.4109, dtype=float32)} step=159383552
+{'Validation Info/Mean Episode Return': Array(38.79253, dtype=float32), 'Validation Info/Mean Episode Length': Array(85., dtype=float32)} step=159383552
+{'Mean Episode Return': Array(459.26175, dtype=float32), 'Mean Episode Length': Array(652.7847, dtype=float32)} step=159907840
+{'Mean Episode Return': Array(466.02625, dtype=float32), 'Mean Episode Length': Array(658.01245, dtype=float32)} step=160432128
+{'Mean Episode Return': Array(481.8591, dtype=float32), 'Mean Episode Length': Array(676.4323, dtype=float32)} step=160956416
+{'Mean Episode Return': Array(468.11484, dtype=float32), 'Mean Episode Length': Array(656.5977, dtype=float32)} step=161480704
+{'Mean Episode Return': Array(471.25687, dtype=float32), 'Mean Episode Length': Array(660.13983, dtype=float32)} step=162004992
+{'Mean Episode Return': Array(461.70862, dtype=float32), 'Mean Episode Length': Array(646.5892, dtype=float32)} step=162529280
+{'Mean Episode Return': Array(468.1628, dtype=float32), 'Mean Episode Length': Array(656.34344, dtype=float32)} step=163053568
+{'Mean Episode Return': Array(489.78006, dtype=float32), 'Mean Episode Length': Array(682.4021, dtype=float32)} step=163577856
+{'Mean Episode Return': Array(477.78354, dtype=float32), 'Mean Episode Length': Array(668.4423, dtype=float32)} step=164102144
+{'Mean Episode Return': Array(482.0902, dtype=float32), 'Mean Episode Length': Array(672.783, dtype=float32)} step=164626432
+{'Mean Episode Return': Array(485.33078, dtype=float32), 'Mean Episode Length': Array(676.4905, dtype=float32)} step=165150720
+{'Mean Episode Return': Array(490.22433, dtype=float32), 'Mean Episode Length': Array(679.2961, dtype=float32)} step=165675008
+{'Mean Episode Return': Array(491.8876, dtype=float32), 'Mean Episode Length': Array(681.8785, dtype=float32)} step=166199296
+{'Mean Episode Return': Array(486.40204, dtype=float32), 'Mean Episode Length': Array(671.7141, dtype=float32)} step=166723584
+{'Mean Episode Return': Array(498.68, dtype=float32), 'Mean Episode Length': Array(687.47845, dtype=float32)} step=167247872
+{'Mean Episode Return': Array(505.35318, dtype=float32), 'Mean Episode Length': Array(697.0239, dtype=float32)} step=167772160
+{'Mean Episode Return': Array(511.7123, dtype=float32), 'Mean Episode Length': Array(703.4947, dtype=float32)} step=168296448
+{'Mean Episode Return': Array(506.99875, dtype=float32), 'Mean Episode Length': Array(697.9598, dtype=float32)} step=168820736
+{'Mean Episode Return': Array(502.79425, dtype=float32), 'Mean Episode Length': Array(692.3443, dtype=float32)} step=169345024
+{'Validation Info/Mean Episode Return': Array(41.672195, dtype=float32), 'Validation Info/Mean Episode Length': Array(67., dtype=float32)} step=169345024
+{'Mean Episode Return': Array(486.5363, dtype=float32), 'Mean Episode Length': Array(672.1427, dtype=float32)} step=169869312
+{'Mean Episode Return': Array(523.2288, dtype=float32), 'Mean Episode Length': Array(716.8338, dtype=float32)} step=170393600
+{'Mean Episode Return': Array(514.4021, dtype=float32), 'Mean Episode Length': Array(702.4518, dtype=float32)} step=170917888
+{'Mean Episode Return': Array(515.34186, dtype=float32), 'Mean Episode Length': Array(699.4453, dtype=float32)} step=171442176
+{'Mean Episode Return': Array(525.65674, dtype=float32), 'Mean Episode Length': Array(711.9933, dtype=float32)} step=171966464
+{'Mean Episode Return': Array(537.2057, dtype=float32), 'Mean Episode Length': Array(727.29724, dtype=float32)} step=172490752
+{'Mean Episode Return': Array(539.90875, dtype=float32), 'Mean Episode Length': Array(730.241, dtype=float32)} step=173015040
+{'Mean Episode Return': Array(531.95526, dtype=float32), 'Mean Episode Length': Array(717.1781, dtype=float32)} step=173539328
+{'Mean Episode Return': Array(511.70743, dtype=float32), 'Mean Episode Length': Array(691.19763, dtype=float32)} step=174063616
+{'Mean Episode Return': Array(533.75616, dtype=float32), 'Mean Episode Length': Array(719.82855, dtype=float32)} step=174587904
+{'Mean Episode Return': Array(512.95355, dtype=float32), 'Mean Episode Length': Array(695.54724, dtype=float32)} step=175112192
+{'Mean Episode Return': Array(539.1561, dtype=float32), 'Mean Episode Length': Array(726.6976, dtype=float32)} step=175636480
+{'Mean Episode Return': Array(558.8397, dtype=float32), 'Mean Episode Length': Array(748.2792, dtype=float32)} step=176160768
+{'Mean Episode Return': Array(552.8652, dtype=float32), 'Mean Episode Length': Array(740.37573, dtype=float32)} step=176685056
+{'Mean Episode Return': Array(559.8321, dtype=float32), 'Mean Episode Length': Array(746.99005, dtype=float32)} step=177209344
+{'Mean Episode Return': Array(549.01575, dtype=float32), 'Mean Episode Length': Array(734.71106, dtype=float32)} step=177733632
+{'Mean Episode Return': Array(562.2703, dtype=float32), 'Mean Episode Length': Array(749.3439, dtype=float32)} step=178257920
+{'Mean Episode Return': Array(561.542, dtype=float32), 'Mean Episode Length': Array(747.31696, dtype=float32)} step=178782208
+{'Mean Episode Return': Array(549.28687, dtype=float32), 'Mean Episode Length': Array(733.1671, dtype=float32)} step=179306496
+{'Validation Info/Mean Episode Return': Array(40.490894, dtype=float32), 'Validation Info/Mean Episode Length': Array(74., dtype=float32)} step=179306496
+{'Mean Episode Return': Array(550.21936, dtype=float32), 'Mean Episode Length': Array(733.64795, dtype=float32)} step=179830784
+{'Mean Episode Return': Array(556.5047, dtype=float32), 'Mean Episode Length': Array(741.3878, dtype=float32)} step=180355072
+{'Mean Episode Return': Array(569.0373, dtype=float32), 'Mean Episode Length': Array(755.6452, dtype=float32)} step=180879360
+{'Mean Episode Return': Array(592.6949, dtype=float32), 'Mean Episode Length': Array(782.8634, dtype=float32)} step=181403648
+{'Mean Episode Return': Array(590.2759, dtype=float32), 'Mean Episode Length': Array(776.78467, dtype=float32)} step=181927936
+{'Mean Episode Return': Array(602.5013, dtype=float32), 'Mean Episode Length': Array(792.2301, dtype=float32)} step=182452224
+{'Mean Episode Return': Array(584.19714, dtype=float32), 'Mean Episode Length': Array(767.64636, dtype=float32)} step=182976512
+{'Mean Episode Return': Array(600.2931, dtype=float32), 'Mean Episode Length': Array(787.69855, dtype=float32)} step=183500800
+{'Mean Episode Return': Array(566.87244, dtype=float32), 'Mean Episode Length': Array(745.1519, dtype=float32)} step=184025088
+{'Mean Episode Return': Array(585.0271, dtype=float32), 'Mean Episode Length': Array(769.5991, dtype=float32)} step=184549376
+{'Mean Episode Return': Array(573.97614, dtype=float32), 'Mean Episode Length': Array(752.62695, dtype=float32)} step=185073664
+{'Mean Episode Return': Array(582.584, dtype=float32), 'Mean Episode Length': Array(760.95135, dtype=float32)} step=185597952
+{'Mean Episode Return': Array(588.0988, dtype=float32), 'Mean Episode Length': Array(768.0458, dtype=float32)} step=186122240
+{'Mean Episode Return': Array(592.2926, dtype=float32), 'Mean Episode Length': Array(771.37134, dtype=float32)} step=186646528
+{'Mean Episode Return': Array(592.3544, dtype=float32), 'Mean Episode Length': Array(771.118, dtype=float32)} step=187170816
+{'Mean Episode Return': Array(599.64575, dtype=float32), 'Mean Episode Length': Array(778.814, dtype=float32)} step=187695104
+{'Mean Episode Return': Array(598.3619, dtype=float32), 'Mean Episode Length': Array(778.24225, dtype=float32)} step=188219392
+{'Mean Episode Return': Array(597.1379, dtype=float32), 'Mean Episode Length': Array(776.7896, dtype=float32)} step=188743680
+{'Mean Episode Return': Array(616.50934, dtype=float32), 'Mean Episode Length': Array(796.2857, dtype=float32)} step=189267968
+{'Validation Info/Mean Episode Return': Array(41.62272, dtype=float32), 'Validation Info/Mean Episode Length': Array(73.5, dtype=float32)} step=189267968
+{'Mean Episode Return': Array(609.3735, dtype=float32), 'Mean Episode Length': Array(788.5988, dtype=float32)} step=189792256
+{'Mean Episode Return': Array(627.6448, dtype=float32), 'Mean Episode Length': Array(809.6474, dtype=float32)} step=190316544
+{'Mean Episode Return': Array(608.7081, dtype=float32), 'Mean Episode Length': Array(787.57465, dtype=float32)} step=190840832
+{'Mean Episode Return': Array(626.8029, dtype=float32), 'Mean Episode Length': Array(808.3901, dtype=float32)} step=191365120
+{'Mean Episode Return': Array(592.3337, dtype=float32), 'Mean Episode Length': Array(766.74384, dtype=float32)} step=191889408
+{'Mean Episode Return': Array(609.2128, dtype=float32), 'Mean Episode Length': Array(787.7877, dtype=float32)} step=192413696
+{'Mean Episode Return': Array(606.6833, dtype=float32), 'Mean Episode Length': Array(783.66864, dtype=float32)} step=192937984
+{'Mean Episode Return': Array(594.114, dtype=float32), 'Mean Episode Length': Array(768.94604, dtype=float32)} step=193462272
+{'Mean Episode Return': Array(610.5798, dtype=float32), 'Mean Episode Length': Array(787.5153, dtype=float32)} step=193986560
+{'Mean Episode Return': Array(612.34015, dtype=float32), 'Mean Episode Length': Array(790.0751, dtype=float32)} step=194510848
+{'Mean Episode Return': Array(607.0297, dtype=float32), 'Mean Episode Length': Array(780.5835, dtype=float32)} step=195035136
+{'Mean Episode Return': Array(612.1188, dtype=float32), 'Mean Episode Length': Array(783.64087, dtype=float32)} step=195559424
+{'Mean Episode Return': Array(613.9945, dtype=float32), 'Mean Episode Length': Array(786.5605, dtype=float32)} step=196083712
+{'Mean Episode Return': Array(613.8307, dtype=float32), 'Mean Episode Length': Array(786.6446, dtype=float32)} step=196608000
+{'Mean Episode Return': Array(619.6988, dtype=float32), 'Mean Episode Length': Array(791.19604, dtype=float32)} step=197132288
+{'Mean Episode Return': Array(638.4785, dtype=float32), 'Mean Episode Length': Array(814.6507, dtype=float32)} step=197656576
+{'Mean Episode Return': Array(614.24475, dtype=float32), 'Mean Episode Length': Array(784.00745, dtype=float32)} step=198180864
+{'Mean Episode Return': Array(619.90985, dtype=float32), 'Mean Episode Length': Array(791.2637, dtype=float32)} step=198705152
+{'Mean Episode Return': Array(628.06146, dtype=float32), 'Mean Episode Length': Array(798.9306, dtype=float32)} step=199229440
+{'Validation Info/Mean Episode Return': Array(nan, dtype=float32), 'Validation Info/Mean Episode Length': Array(nan, dtype=float32)} step=199229440
+{'Mean Episode Return': Array(625.7604, dtype=float32), 'Mean Episode Length': Array(796.63556, dtype=float32)} step=199753728
+Time taken to log metrics: 0.9995925426483154s

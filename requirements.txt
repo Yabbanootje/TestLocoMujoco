@@ -56,7 +56,7 @@ MarkupSafe==3.0.3
 matplotlib==3.10.6
 mdurl==0.1.2
 metrx==0.1.0
-mkl-service==2.4.0
+mkl-service==2.4.1
 # mkl_fft @ file:///C:/Users/dev-admin/mkl/mkl_fft_1730823082242/work
 # mkl_random @ file:///C:/Users/dev-admin/mkl/mkl_random_1730822522280/work
 ml_dtypes==0.5.3

@@ -14,6 +14,10 @@ from hydra.core.hydra_config import HydraConfig
 from omegaconf import DictConfig, OmegaConf
 import traceback
 
+import copy
+
+from sympy import true
+
 SERVER = False
 TRAIN = False
 
@@ -22,10 +26,10 @@ TRAIN = False
 def experiment(config: DictConfig):
     try:
         if not SERVER:
-            training_steps = 400_000_000
+            training_steps = 1_000_000_000
             algorithm = "PPO"
             env_id = "MjxSkeletonMuscle"
-            model_name = algorithm + "_" + env_id + "_" + str(training_steps) + "_Lattice"
+            model_name = algorithm + "_" + env_id + "_" + str(training_steps) + "_Baseline_Temp" #+ "_Baseline copy 2"
             dir = f"./{model_name}/"
             if not os.path.exists(model_name):
                 os.makedirs(model_name)
@@ -83,8 +87,18 @@ def experiment(config: DictConfig):
 
                 for i in range(len(training_metrics.mean_episode_return)):
                     print({"Mean Episode Return": training_metrics.mean_episode_return[i],
-                            "Mean Episode Length": training_metrics.mean_episode_length[i]},
-                            f"step={int(training_metrics.max_timestep[i])}")
+                        "Var Episode Return": training_metrics.var_episode_return[i],
+                        "Mean Episode Length": training_metrics.mean_episode_length[i],
+                        "Var Episode Length": training_metrics.var_episode_length[i],
+                        "Num Episodes": training_metrics.num_episodes[i],
+                        "Max Episode Return": training_metrics.max_episode_return[i],
+                        "Min Episode Return": training_metrics.min_episode_return[i],
+                        "Max Episode Length": training_metrics.max_episode_length[i],
+                        "Min Episode Length": training_metrics.min_episode_length[i],
+                        "Max Timestep": training_metrics.max_timestep[i],
+                        "Min Timestep": training_metrics.min_timestep[i],
+                        },
+                        f"step={int(training_metrics.max_timestep[i])}")
 
                     if (i+1) % config.experiment.validation_interval == 0 and config.experiment.validation.active:
                         print({"Validation Info/Mean Episode Return": validation_metrics.mean_episode_return[i],
@@ -126,10 +140,15 @@ def experiment(config: DictConfig):
             # create env
             OmegaConf.set_struct(config, False)  # Allow modifications
             config.experiment.env_params["headless"] = False
+            config.experiment.env_params["horizon"] = 2000
+            # config.experiment.env_params.th_params["random_start"] = False
+            # config.experiment.env_params.th_params["fixed_start_conf"] = [0, 0]
+            config.experiment.env_params["th_params"] = {"random_start": False, "fixed_start_conf": [0, 0]}
+            config.experiment.env_params["goal_type"] = "GoalTrajMimicv2"
             env = factory.make(**config.experiment.env_params, **config.experiment.task_factory.params)
 
             # run the environment with the trained agent to record video
-            PPOJax.play_policy(env, agent_conf, agent_state, deterministic=True, n_steps=2000, n_envs=2, record=True,
+            PPOJax.play_policy(env, agent_conf, agent_state, deterministic=True, n_steps=2000, n_envs=1, record=True,
                             train_state_seed=0)
             video_file = env.video_file_path
             print({"Save video to": video_file})
