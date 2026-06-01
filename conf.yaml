@@ -8,26 +8,29 @@ defaults:
 #  hydra_logging: {}
 #  sweeper:
 #    params:
-    #  experiment.learnable_std: true, false
-    #  experiment.init_std: 0.1, 0.2
-    #  experiment.num_steps: 10, 20
-    #  experiment.update_epochs: 4
-    #  experiment.clip_eps: 0.2, 0.05
-    #  # env_params
-    #  experiment.env_params.env_name: MjxUnitreeH1.walk, MjxUnitreeH1.run
-      # experiment.env_params.reward_params.qpos_w_exp: 2.0, 20.0
-      # experiment.env_params.reward_params.qvel_w_exp: 0.1, 1.0
-      # experiment.env_params.reward_params.rpos_w_exp: 40.0, 400.0
-      # experiment.env_params.reward_params.com_w_exp: 1.0, 5.0
-      # experiment.env_params.horizon: 600, 2000
+#      experiment.task_factory.params.default_dataset_conf.task: "[walk, walkturn, onestepleft, onestepright, onesteplong, onestepside1, onestepside2, stepinplace1, stepinplace2, stepinplace3, highjump, random_walk, squat]"
+    # experiment.learnable_std: true, false
+    # experiment.init_std: 0.1, 0.2
+    # experiment.num_steps: 10, 20
+    # experiment.update_epochs: 4
+    # experiment.clip_eps: 0.2, 0.05
+    # # env_params
+    # experiment.env_params.env_name: MjxUnitreeH1.walk, MjxUnitreeH1.run
+    # experiment.env_params.reward_params.qpos_w_exp: 2.0, 20.0
+    # experiment.env_params.reward_params.qvel_w_exp: 0.1, 1.0
+    # experiment.env_params.reward_params.rpos_w_exp: 40.0, 400.0
+    # experiment.env_params.reward_params.com_w_exp: 5.0, 2.0
+    # experiment.env_params.horizon: 600, 2000
     # experiment.hidden_layers: "[1024, 1024, 512, 512, 512, 256, 256, 256], [2048, 1536, 1024, 1024, 512, 512]"
     # experiment.use_lattice: false, true
+    # experiment.full_latent_matrix: false, true
+    # experiment.lattice_sample_freq: 5, 20
 
 
 
 
 wandb:
-  project: "baseline_test"
+  project: "baseline_lattice"
 
 experiment:
   task_factory:
@@ -83,7 +86,7 @@ experiment:
       rvel_w_sum: 0.0    # site velocity importance
       action_out_of_bounds_coeff: 0.0
       # joint_acc_coeff: 0.05
-      # joint_torque_coeff: 0.05
+      # joint_torque_coeff: 0.01
       action_rate_coeff: 0.02
       action_size_coeff: 0.02
       sites_for_mimic:
@@ -111,18 +114,20 @@ experiment:
     #     - ""
   hidden_layers: [1024, 1024, 1024, 1024, 512, 512, 512, 512]
   lr: 1e-4
-  num_envs: 8
-  num_steps: 200
-  total_timesteps: 2e4
+  num_envs: 256
+  num_steps: 2048        # steps per rollout
+  total_timesteps: 1000e6
   update_epochs: 4
   # proportion_env_reward: 0.0
-  num_minibatches: 32
-  gamma: 0.95
+  num_minibatches: 2048
+  gamma: 0.99
   gae_lambda: 0.95
   clip_eps: 0.2
   init_std: 0.2
-  learnable_std: false
+  learnable_std: true
   use_lattice: true
+  full_latent_matrix: true
+  lattice_sample_freq: 1
   ent_coef: 1e-3
   vf_coef: 0.5
   max_grad_norm: 0.5
@@ -138,7 +143,7 @@ experiment:
     active: true
     num_steps: 600
     num_envs: 30
-    num: 1 # set to 0 to disable validation
+    num: 80 # set to 0 to disable validation
     # if none of the following is set, only the mean reward and episode length is logged
     quantities: # quantities to be used for the distance measures below
       - JointPosition
