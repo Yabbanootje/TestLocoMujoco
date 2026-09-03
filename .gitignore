@@ -2,3 +2,11 @@
 *.pkl
 outputs/
 LocoMuJoCo_Recordings/
+AMASS/
+BEP/
+old_runs/
+MuscleMimic/
+Kinesis/
+PPO_Mjx*
+!PPO_MjxSkeletonMuscle__*
+kit*

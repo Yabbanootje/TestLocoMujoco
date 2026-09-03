@@ -1,6 +1,6 @@
-defaults:
-  - override hydra/job_logging: default
-  - override hydra/launcher: basic
+# defaults:
+#   - override hydra/job_logging: default
+#   - override hydra/launcher: basic
 
 # hydra:
 #  mode: MULTIRUN
@@ -29,8 +29,8 @@ defaults:
 
 
 
-wandb:
-  project: "baseline_lattice"
+# wandb:
+#   project: "baseline_lattice"
 
 experiment:
   task_factory:
@@ -57,7 +57,7 @@ experiment:
           # - random_walk
           # - squat
   env_params:
-    env_name: MjxSkeletonMuscle
+    env_name: MjxSkeletonTorque
     headless: false
     disable_arms: false
     scaling: 1.0
@@ -66,7 +66,7 @@ experiment:
     goal_type: GoalTrajMimic
     goal_params:
       visualize_goal: true
-      n_step_lookahead: 1
+      n_step_lookahead: 0
       full_obs_lookahead: false
     control_type: ${control_config.torque_control.control_type}
     control_params: ${control_config.torque_control.control_params}
@@ -112,21 +112,30 @@ experiment:
     #     - ""
     #   tag:
     #     - ""
-  hidden_layers: [1024, 1024, 1024, 1024, 512, 512, 512, 512]
+  cvae:
+    use_cvae: true
+    latent_dim: 64
+    hidden_layers_enc: [1024, 512]
+    hidden_layers_dec: [512, 1024]
+    activation: silu
+    recon_coef: 0.5
+    kl_coef: 0.5
+    n_step_lookahead: 4
+  hidden_layers: [1024, 512]
   lr: 1e-4
-  num_envs: 256
-  num_steps: 2048        # steps per rollout
-  total_timesteps: 1000e6
+  num_envs: 4
+  num_steps: 1024        # steps per rollout
+  total_timesteps: 5e4
   update_epochs: 4
   # proportion_env_reward: 0.0
-  num_minibatches: 2048
+  num_minibatches: 32
   gamma: 0.99
   gae_lambda: 0.95
   clip_eps: 0.2
   init_std: 0.2
   learnable_std: true
-  use_lattice: true
-  full_latent_matrix: true
+  use_lattice: false
+  full_latent_matrix: false
   lattice_sample_freq: 1
   ent_coef: 1e-3
   vf_coef: 0.5
@@ -143,7 +152,7 @@ experiment:
     active: true
     num_steps: 600
     num_envs: 30
-    num: 80 # set to 0 to disable validation
+    num: 8 # set to 0 to disable validation
     # if none of the following is set, only the mean reward and episode length is logged
     quantities: # quantities to be used for the distance measures below
       - JointPosition
